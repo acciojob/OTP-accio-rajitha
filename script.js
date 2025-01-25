@@ -4,9 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   inputs.forEach((input, index) => {
     input.addEventListener('input', function (e) {
+     
+      if (e.target.value.length === 1 && index < inputs.length - 1) {
+        setTimeout(() => inputs[index + 1].focus(), 100); 
+      }
+    });
+
+    input.addEventListener('keydown', function (e) {
+   
+      if (e.key === "Backspace" && index > 0 && e.target.value === "") {
+        setTimeout(() => inputs[index - 1].focus(), 100);
+      }
+    });
+  });
+});  
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll('.code');
+
+  inputs.forEach((input, index) => {
+    input.addEventListener('input', function (e) {
       // Move to the next input field when a digit is typed
       if (e.target.value.length === 1 && index < inputs.length - 1) {
-        setTimeout(() => inputs[index + 1].focus(), 100); // Add a small delay
+        setTimeout(() => inputs[index + 1].focused(), 100); // Add a small delay
       }
     });
 
