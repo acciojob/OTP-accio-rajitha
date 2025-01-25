@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   inputs.forEach((input, index) => {
     input.addEventListener('keyup', function (e) {
       if (e.target.value && index < inputs.length - 1) {
-        inputs[index + 1].focus();
+        setTimeout(() => inputs[index + 1].focus(), 1000);
       }
       if (e.key === "Backspace" && index > 0) {
-        inputs[index - 1].focus();
+        setTimeout(() => inputs[index - 1].focus(), 1000);
       }
     });
   });
