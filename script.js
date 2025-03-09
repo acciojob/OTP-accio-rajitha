@@ -2,6 +2,36 @@
 document.addEventListener("DOMContentLoaded", function () {
   const inputs = document.querySelectorAll('.code');
 
+  inputs.forEach((input, index) => {
+    // Handle typing forward
+    input.addEventListener('input', function (e) {
+      const value = e.target.value;
+
+      if (value.length === 1 && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
+    });
+
+    // Handle backspace
+    input.addEventListener('keydown', function (e) {
+      if (e.key === "Backspace") {
+        if (input.value === "") {
+          // Move focus to the previous field
+          if (index > 0) {
+            inputs[index - 1].focus();
+          }
+        } else {
+          // Clear current input value
+          input.value = "";
+        }
+      }
+    });
+  });
+});
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll('.code');
+
   inputs.forEach((input) => {
     input.addEventListener('input', function (e) {
       if (e.target.value) {
